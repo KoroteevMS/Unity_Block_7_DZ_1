@@ -8,7 +8,7 @@ public class Counter : MonoBehaviour
 
     private int _number = 0;
     private bool _isSuspended = true;
-    private Coroutine _countingCoroutine;
+    private Coroutine _coroutine;
     private WaitForSeconds _wait;
 
     public event Action<int> Changed;
@@ -24,22 +24,22 @@ public class Counter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ToggleCounter();
+            Switch();
         }
     }
 
-    private void ToggleCounter()
+    private void Switch()
     {
         _isSuspended = !_isSuspended;
 
         if (_isSuspended == false)
         {
-            _countingCoroutine = StartCoroutine(ChangeNumber());
+            _coroutine = StartCoroutine(ChangeNumber());
         }
         else
         {
-            if (_countingCoroutine != null)
-                StopCoroutine(_countingCoroutine);
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
         }
     }
 

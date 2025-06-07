@@ -8,17 +8,13 @@ public class CounterView : MonoBehaviour
 
     private void Awake()
     {
-        if (_counter != null)
-        {
         _text.text = _counter.StartedNumber.ToString();
         _counter.Changed += UpdateText;
-        }
     }
 
     private void OnDestroy()
     {
-        if (_counter != null)
-            _counter.Changed -= UpdateText;
+        _counter.Changed -= UpdateText;
     }
 
     private void UpdateText(int number)
